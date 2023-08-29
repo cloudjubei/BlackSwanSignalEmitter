@@ -9,7 +9,7 @@ export class SignalCoreService
     setupCache(tokens: string[])
     {
         for(const token of tokens){
-            this.cache[token] = new SignalModel(token, 0, 0)
+            this.cache[token] = new SignalModel(token, 0, 0, 0)
         }
     }
 
