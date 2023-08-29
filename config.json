@@ -1,0 +1,7 @@
+{
+    "type" : "signal",
+    "identifier": "test",
+    "tokens" : [
+        "BTCTUSD"
+    ]
+}
