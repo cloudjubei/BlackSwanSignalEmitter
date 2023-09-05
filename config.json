@@ -2,7 +2,7 @@
     "type" : "signal",
     "identifier": "manual",
     "tokens" : [
-        "BTCTUSD"
+        "BTCBUSD"
     ],
     "chance": 0
 }

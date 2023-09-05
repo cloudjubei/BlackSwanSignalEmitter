@@ -51,6 +51,13 @@ export class SignalService implements OnApplicationBootstrap
         const tokens = this.identityService.getTokens()
         for(const tokenPair of tokens){
 
+            if (this.signalCoreService.manualSignal?.tokenPair === tokenPair) {
+                const signalModel = this.signalCoreService.manualSignal!
+                this.signalCoreService.storeInCache(signalModel)
+                await this.wsSignalService.sendUpdate(signalModel.tokenPair, signalModel.action)
+                this.signalCoreService.manualSignal = undefined
+                return
+            }
             let action = 0
             const chance = Math.random()
             if (chance < this.chance){

@@ -5,6 +5,7 @@ import SignalModel from 'src/models/signal/SignalModel.dto'
 export class SignalCoreService
 {
     private cache : { [key:string] : SignalModel } = {}
+    manualSignal? : SignalModel = undefined
 
     setupCache(tokens: string[])
     {

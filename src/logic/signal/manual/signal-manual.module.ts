@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common'
 import { SignalManualController } from './signal-manual.controller'
-import { WSSignalModule } from 'src/logic/websockets/signal/ws-signal.module'
+import { SignalCoreModule } from '../core/signal-core.module'
 
 @Module({
-    imports: [WSSignalModule],
+    imports: [SignalCoreModule],
     controllers: [SignalManualController]
 })
 export class SignalManualModule {}
