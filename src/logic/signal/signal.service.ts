@@ -4,6 +4,8 @@ import { IdentityService } from '../identity/identity.service'
 import { SignalCoreService } from './core/signal-core.service'
 import { WSSignalService } from '../websockets/signal/ws-signal.service'
 import SignalModel from 'src/models/signal/SignalModel.dto'
+import { getFile } from 'src/lib/storageUtils'
+import ConfigModel from 'src/models/ConfigModel.dto'
 
 @Injectable()
 export class SignalService implements OnApplicationBootstrap
@@ -12,9 +14,16 @@ export class SignalService implements OnApplicationBootstrap
         private readonly identityService: IdentityService,
         private readonly signalCoreService: SignalCoreService,
         private readonly wsSignalService: WSSignalService,
-    ){}
+    ){
+
+        const configFile = getFile('config.json')
+        const config = JSON.parse(configFile) as ConfigModel
+        
+        this.chance = config.chance
+    }
     
     hasSetup = false
+    chance = 0.0
 
     onApplicationBootstrap()
     {
@@ -40,21 +49,17 @@ export class SignalService implements OnApplicationBootstrap
         if (!this.hasSetup) { return }
 
         const tokens = this.identityService.getTokens()
-        console.log('SERVING TOKENS: ', tokens)
         for(const tokenPair of tokens){
 
-            //TODO: work out signal
             let action = 0
-            const THRESHOLD = 0.1
             const chance = Math.random()
-            if (chance < THRESHOLD){
+            if (chance < this.chance){
                 action = 1
-            }else if (chance > 1-THRESHOLD){
+            }else if (chance > 1-this.chance){
                 action = -1
             }
 
             const signalModel = new SignalModel(tokenPair, action, Date.now())
-            console.log(signalModel)
             this.signalCoreService.storeInCache(signalModel)
 
             await this.wsSignalService.sendUpdate(signalModel.tokenPair, signalModel.action)

@@ -15,7 +15,7 @@ export class SignalCoreController
         return await this.signalCoreService.getLatest(tokenPair)
     }
 
-    @Get('latestPrice/:tokenPair')
+    @Get('latestAction/:tokenPair')
     async getLatestAction(@Param('tokenPair') tokenPair: string) : Promise<number>
     {
         return await this.signalCoreService.getLatestAction(tokenPair)
@@ -26,4 +26,5 @@ export class SignalCoreController
     {
         return await this.signalCoreService.getLatestTime(tokenPair)
     }
+
 }

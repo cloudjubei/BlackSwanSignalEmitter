@@ -1,7 +1,8 @@
 {
     "type" : "signal",
-    "identifier": "test",
+    "identifier": "manual",
     "tokens" : [
         "BTCTUSD"
-    ]
+    ],
+    "chance": 0
 }
