@@ -2,7 +2,8 @@
     "type" : "signal",
     "identifier": "manual",
     "tokens" : [
-        "BTCUSDT"
+        "BTCUSDT",
+        "BTCFDUSD"
     ],
     "chance": 1
 }
