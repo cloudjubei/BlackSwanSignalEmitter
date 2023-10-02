@@ -23,14 +23,4 @@ export class SignalCoreService
     {
         return this.cache[tokenPair]
     }
-
-    getLatestAction(tokenPair: string) : number | undefined
-    {
-        return this.getLatest(tokenPair)?.action
-    }
-
-    getLatestTime(tokenPair: string) : number | undefined
-    {
-        return this.getLatest(tokenPair)?.timestamp
-    }
 }

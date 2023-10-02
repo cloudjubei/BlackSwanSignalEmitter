@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerDocumentOptions } from '@nestjs/swagger'
 export default function swaggerConfig() //(tag: string)
 {
     const d = new DocumentBuilder()
-    .setTitle('PriceEmitter')
+    .setTitle('SignalEmitter')
     .setVersion('0.0.1')
     .addServer("/")
     .build()
