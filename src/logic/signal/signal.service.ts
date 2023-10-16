@@ -3,9 +3,9 @@ import { Cron, CronExpression } from '@nestjs/schedule'
 import { IdentityService } from '../identity/identity.service'
 import { SignalCoreService } from './core/signal-core.service'
 import { WSSignalService } from '../websockets/signal/ws-signal.service'
-import SignalModel from 'src/models/signal/SignalModel.dto'
-import { getFile } from 'src/lib/storageUtils'
-import ConfigModel from 'src/models/ConfigModel.dto'
+import SignalModel from 'commons/models/signal/SignalModel.dto'
+import StorageUtils from 'commons/lib/storageUtils'
+import ConfigModel from 'models/ConfigModel.dto'
 
 @Injectable()
 export class SignalService implements OnApplicationBootstrap
@@ -15,8 +15,7 @@ export class SignalService implements OnApplicationBootstrap
         private readonly signalCoreService: SignalCoreService,
         private readonly wsSignalService: WSSignalService,
     ){
-
-        const configFile = getFile('config.json')
+        const configFile = StorageUtils.getFile('config.json')
         const config = JSON.parse(configFile) as ConfigModel
         
         this.chance = config.chance
@@ -66,7 +65,7 @@ export class SignalService implements OnApplicationBootstrap
                 action = -1
             }
 
-            const signalModel = new SignalModel(tokenPair, action, Date.now())
+            const signalModel = new SignalModel(tokenPair, '1s', Date.now(), action)
             this.signalCoreService.storeInCache(signalModel)
 
             await this.wsSignalService.sendUpdate(signalModel.tokenPair, signalModel.action)

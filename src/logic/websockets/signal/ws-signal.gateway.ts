@@ -4,8 +4,8 @@ import {
     MessageBody
   } from '@nestjs/websockets'
 import { COMMON_GATEWAY } from '../websockets.gateway'
-import SignalModel from 'src/models/signal/SignalModel.dto'
-import { SignalCoreService } from 'src/logic/signal/core/signal-core.service'
+import SignalModel from 'commons/models/signal/SignalModel.dto'
+import { SignalCoreService } from 'logic/signal/core/signal-core.service'
   
 export const SIGNAL_PREFIX ='signal_'
 export const MESSAGE_GET_LATEST = SIGNAL_PREFIX + 'latest'

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import SignalModel from 'src/models/signal/SignalModel.dto'
+import SignalModel from 'commons/models/signal/SignalModel.dto'
 
 @Injectable()
 export class SignalCoreService
@@ -10,7 +10,7 @@ export class SignalCoreService
     setupCache(tokens: string[])
     {
         for(const token of tokens){
-            this.cache[token] = new SignalModel(token, 0, 0, 0)
+            this.cache[token] = new SignalModel(token, '1s', 0, 0, 0)
         }
     }
 
