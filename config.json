@@ -2,8 +2,11 @@
     "type" : "signal",
     "identifier": "manual",
     "tokens" : [
-        "BTCUSDT",
-        "BTCFDUSD"
+        "BTCFDUSD",
+        "XRPFDUSD",
+        "ETHFDUSD",
+        "DOTFDUSD",
+        "DOGEFDUSD"
     ],
     "chance": 1
 }
